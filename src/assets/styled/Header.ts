@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { SCREENS } from './responsive';
 
 export const Wrapper = styled.header`
-  padding-top: 40px;
+  position: relative;
+  z-index: 5;
+  padding-top: 36px;
+  padding-bottom: 36px;
   background-color: #fff;
 
   @media (${SCREENS.sm}) {
@@ -12,6 +15,7 @@ export const Wrapper = styled.header`
 `;
 
 export const Container = styled.div`
+  position: relative;
   width: 1140px;
   margin: 0 auto;
   padding: 0 15px;

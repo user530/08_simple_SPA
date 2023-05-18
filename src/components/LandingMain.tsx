@@ -1,5 +1,11 @@
+import MainBanner from './MainBanner';
+
 const LandingMain: React.FC = () => {
-  return <main>Main landing</main>;
+  return (
+    <main>
+      <MainBanner />
+    </main>
+  );
 };
 
 export default LandingMain;
