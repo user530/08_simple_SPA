@@ -3,7 +3,6 @@ import { SCREENS } from './responsive';
 
 export const Wrapper = styled.header`
   position: relative;
-  z-index: 5;
   padding-top: 36px;
   padding-bottom: 36px;
   background-color: #fff;
@@ -11,6 +10,7 @@ export const Wrapper = styled.header`
   @media (${SCREENS.sm}) {
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 5;
   }
 `;
 
