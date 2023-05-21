@@ -41,21 +41,7 @@ const ProductsSlider: React.FC<IProductsSlider> = (props: IProductsSlider) => {
             <BsArrowRight />
           </SliderControlBtn>
         }
-        DotsWrapper={(props: { children: React.ReactElement[] }) => {
-          const { children } = props;
-
-          return (
-            <SliderControlDots>
-              {children.map((elem, ind) =>
-                elem.props.active ? (
-                  <SliderControlDot theme={SliderDotActive} key={ind} />
-                ) : (
-                  <SliderControlDot key={ind} />
-                )
-              )}
-            </SliderControlDots>
-          );
-        }}
+        DotsWrapper={() => <SliderControlDots />}
       >
         {products.map((product, ind) => {
           return <ProductsSliderCard key={ind} product={product} />;
