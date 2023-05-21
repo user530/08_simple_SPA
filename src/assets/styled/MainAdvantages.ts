@@ -21,6 +21,11 @@ export const MainAdvantagesWrapper = styled.section`
 export const AdvantagesHeadingWrapper = styled.div`
   padding-top: 50px;
   text-align: center;
+
+  @media (${SCREENS.sm}) {
+    padding-top: 30px;
+    text-align: left;
+  }
 `;
 
 export const AdvantagesHeading = styled.h2`
@@ -42,6 +47,10 @@ export const AdvantagesHeading = styled.h2`
     @media (${SCREENS.sm}) {
       display: none;
     }
+  }
+
+  @media (${SCREENS.sm}) {
+    font-size: 24px;
   }
 `;
 

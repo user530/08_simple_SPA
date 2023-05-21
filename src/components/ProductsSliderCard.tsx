@@ -15,12 +15,11 @@ import {
   TagListNew,
   TagListPopular,
   TagListSpecial,
-} from '../assets/styled/ProductsSliderCard';
+} from '../assets/styled/ProductsSlider';
 import { Product } from '../types';
 
-import image from '../assets/img/cake_1.png';
-
 interface IProductSliderCard {
+  className?: string;
   product: Product;
 }
 
@@ -29,13 +28,13 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
 ) => {
   const {
     product: { img, name, price, ingredients, tags },
+    className,
   } = props;
 
   return (
-    <ProductsCardWrapper>
+    <ProductsCardWrapper className={className}>
       <ProductsCardImgWrapper>
-        <ProcuctsCardImg src={image} />
-
+        <ProcuctsCardImg src={require(`../assets/img/${img}`)} />
         <ProductsCardTagList>
           {tags.map((tag, ind) => {
             return tag === 'Новинка' ? (
