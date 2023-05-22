@@ -5,9 +5,7 @@ import Slider from 'react-styled-carousel';
 import {
   RightBtnTheme,
   SliderControlBtn,
-  SliderControlDot,
   SliderControlDots,
-  SliderDotActive,
   SliderWrapper,
 } from '../assets/styled/ProductsSlider';
 

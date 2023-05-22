@@ -10,31 +10,15 @@ import {
   AdvantagesList,
   MainAdvantagesWrapper,
 } from '../assets/styled/MainAdvantages';
-import advImg1 from '../assets/img/advantage_1.png';
-import advImg2 from '../assets/img/advantage_2.png';
-import advImg3 from '../assets/img/advantage_3.png';
-import advImg4 from '../assets/img/advantage_4.png';
 import advBanner from '../assets/img/advantage_img.png';
+import { Advantage } from '../types';
 
-const MainAdvantages: React.FC = () => {
-  const advList = [
-    {
-      img: advImg1,
-      txt: 'Используются только натуральные ингредиенты без полуфабрикатов',
-    },
-    {
-      img: advImg2,
-      txt: 'Авторская работа и оригинальный дизайн',
-    },
-    {
-      img: advImg3,
-      txt: 'Более 2500 клиентов, 1000 положительных отзывов',
-    },
-    {
-      img: advImg4,
-      txt: 'Бесплатная доставка по Москве при заказе от 2 000 рублей',
-    },
-  ];
+interface IMainAdvantages {
+  advantages: Advantage[];
+}
+
+const MainAdvantages: React.FC<IMainAdvantages> = (props: IMainAdvantages) => {
+  const { advantages } = props;
 
   return (
     <MainAdvantagesWrapper>
@@ -46,10 +30,12 @@ const MainAdvantages: React.FC = () => {
         </AdvantagesHeadingWrapper>
 
         <AdvantagesList>
-          {advList.map((adv, ind) => (
+          {advantages.map((adv, ind) => (
             <AdvantagesItem key={ind}>
               <AdvItemLeft>
-                <AdvItemImage src={adv.img} />
+                <AdvItemImage
+                  src={require(`../assets/img/advantages/${adv.img}`)}
+                />
               </AdvItemLeft>
               <AdvItemRight>{adv.txt}</AdvItemRight>
             </AdvantagesItem>

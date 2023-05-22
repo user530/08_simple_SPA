@@ -34,7 +34,7 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
   return (
     <ProductsCardWrapper className={className}>
       <ProductsCardImgWrapper>
-        <ProcuctsCardImg src={require(`../assets/img/${img}`)} />
+        <ProcuctsCardImg src={require(`../assets/img/products/${img}`)} />
         <ProductsCardTagList>
           {tags.map((tag, ind) => {
             return tag === 'Новинка' ? (
