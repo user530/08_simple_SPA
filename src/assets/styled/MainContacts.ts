@@ -73,9 +73,14 @@ export const ContactsRightColumn = styled.div`
   height: 360px;
   flex-shrink: 0;
 
+  @media (${SCREENS.lg}) {
+    height: 240px;
+  }
+
   @media (${SCREENS.sm}) {
-    width: 100%;
+    width: calc(100% + 30px);
     height: 186px;
+    margin-left: -15px;
   }
 `;
 
@@ -101,7 +106,6 @@ export const ContactsLeftButton = styled.button`
   letter-spacing: 0.04em;
   color: #ffffff;
 `;
-export const ContactsRightMapWrapper = styled.div``;
 
 export const InformationPhone = styled.div`
   display: flex;
