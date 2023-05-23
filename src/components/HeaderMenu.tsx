@@ -1,7 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import NavMenuMobile from './NavmenuMobile';
-import Navmenu from './Navmenu';
+import { NavMenuMobile, Navmenu } from '../components';
 
 interface IHeaderMenu {
   menu: string[];

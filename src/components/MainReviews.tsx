@@ -7,7 +7,7 @@ import {
   ReviewsList,
 } from '../assets/styled/MainReviews';
 import { Review } from '../types';
-import ReviewCard from './ReviewCard';
+import { ReviewCard } from '../components';
 import Slider from 'react-styled-carousel';
 import {
   RightBtnTheme,

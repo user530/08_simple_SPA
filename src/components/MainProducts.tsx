@@ -4,7 +4,7 @@ import {
   ProductsHeadingWrapper,
 } from '../assets/styled/MainProducts';
 import { Product } from '../types';
-import ProductsSlider from './ProductsSlider';
+import { ProductsSlider } from '../components';
 
 interface IMainProducts {
   products: Product[];

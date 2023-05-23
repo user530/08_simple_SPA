@@ -1,18 +1,25 @@
 import { Wrapper, Container, HeaderFlex } from '../assets/styled/Header';
-import HeaderContactsComponent from './HeaderContacts';
-import HeaderLogoComponent from './HeaderLogo';
-import HeaderMenuComponent from './HeaderMenu';
-import HeaderSocialComponent from './HeaderSocial';
+import { Social } from '../types';
+import {
+  HeaderContactsComponent,
+  HeaderLogoComponent,
+  HeaderMenuComponent,
+  HeaderSocialComponent,
+} from '../components';
 
-const Header: React.FC = () => {
-  const menu = [
-    'О кондитере',
-    'Преимущества',
-    'Продукция',
-    'Отзывы',
-    'Контакты',
-  ];
-  const phone = '8-900-888-55-33';
+interface IHeader {
+  menu: string[];
+  contacts: {
+    phone: string;
+    socials: Social[];
+  };
+}
+
+const Header: React.FC<IHeader> = (props: IHeader) => {
+  const {
+    menu,
+    contacts: { phone, socials },
+  } = props;
 
   return (
     <Wrapper>
@@ -22,7 +29,7 @@ const Header: React.FC = () => {
 
           <HeaderMenuComponent menu={menu} />
 
-          <HeaderSocialComponent />
+          <HeaderSocialComponent socials={socials} />
 
           <HeaderContactsComponent phone={phone} />
         </HeaderFlex>

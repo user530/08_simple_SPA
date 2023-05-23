@@ -1,6 +1,6 @@
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { Product } from '../types';
-import ProductsSliderCard from './ProductsSliderCard';
+import { ProductsSliderCard } from '../components';
 import Slider from 'react-styled-carousel';
 import {
   RightBtnTheme,

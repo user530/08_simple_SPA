@@ -5,6 +5,10 @@ export const ReviewCardWrapper = styled.div`
   display: flex;
   column-gap: 34px;
 
+  @media (${SCREENS.md}) {
+    column-gap: 15px;
+  }
+
   @media (${SCREENS.sm}) {
     padding: 31px 0;
   }
@@ -24,6 +28,12 @@ export const ReviewCardImg = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  object-fit: cover;
+
+  @media (${SCREENS.md}) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 export const ReviewCardName = styled.h5`
@@ -43,7 +53,7 @@ export const ReviewCardTxt = styled.p`
   -webkit-line-clamp: 5;
   overflow: hidden;
 
-  @media (${SCREENS.sm}) {
+  @media (${SCREENS.md}) {
     -webkit-line-clamp: 3;
   }
 `;

@@ -1,20 +1,22 @@
 import { HeaderSocial, HeaderSocialItem } from '../assets/styled/Header';
-import { FaVk, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import { Social } from '../types';
 
-const HeaderSocialComponent: React.FC = () => {
+interface IHeaderSocial {
+  socials: Social[];
+}
+
+const HeaderSocialComponent: React.FC<IHeaderSocial> = (
+  props: IHeaderSocial
+) => {
+  const { socials } = props;
+
   return (
     <HeaderSocial>
-      <HeaderSocialItem>
-        <FaVk />
-      </HeaderSocialItem>
-
-      <HeaderSocialItem>
-        <FaTelegram />
-      </HeaderSocialItem>
-
-      <HeaderSocialItem>
-        <FaWhatsapp />
-      </HeaderSocialItem>
+      {socials.map((social, ind) => (
+        <HeaderSocialItem key={ind} href={social.url}>
+          <social.icon />
+        </HeaderSocialItem>
+      ))}
     </HeaderSocial>
   );
 };
