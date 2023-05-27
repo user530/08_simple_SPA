@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   FilledBtn,
   InfoHeading,
@@ -17,6 +18,7 @@ import {
   TagListSpecial,
 } from '../assets/styled/ProductsSlider';
 import { Product } from '../types';
+import ProductPopup from './ProductPopup';
 
 interface IProductSliderCard {
   className?: string;
@@ -30,6 +32,9 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
     product: { img, name, price, ingredients, tags },
     className,
   } = props;
+
+  const [orderOpened, setOrderOpened] = useState<boolean>(false);
+  const [detailsOpened, setDetailsOpened] = useState<boolean>(false);
 
   return (
     <ProductsCardWrapper className={className}>
@@ -59,9 +64,25 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
       </ProductsCardInfo>
 
       <ProductsCardBtns>
-        <ProductsCardBtn>Подробнее</ProductsCardBtn>
-        <ProductsCardBtn theme={FilledBtn}>Заказать</ProductsCardBtn>
+        <ProductsCardBtn onClick={() => setDetailsOpened(true)}>
+          Подробнее
+        </ProductsCardBtn>
+        <ProductsCardBtn theme={FilledBtn} onClick={() => setOrderOpened(true)}>
+          Заказать
+        </ProductsCardBtn>
       </ProductsCardBtns>
+
+      {orderOpened ? (
+        <ProductPopup
+          details={{ heading: 'Оформление заказа', text: '' }}
+          product={props.product}
+        />
+      ) : detailsOpened ? (
+        <ProductPopup
+          details={{ heading: 'Информация о товаре', text: '' }}
+          product={props.product}
+        />
+      ) : null}
     </ProductsCardWrapper>
   );
 };

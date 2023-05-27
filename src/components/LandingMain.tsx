@@ -1,5 +1,5 @@
 import { Wrapper } from '../assets/styled/LandingMain';
-import { Advantage, Contacts, Product, Review } from '../types';
+import { Advantage, Contacts, Details, Product, Review } from '../types';
 import {
   MainAbout,
   MainAdvantages,
@@ -14,14 +14,15 @@ interface ILandingMain {
   products: Product[];
   reviews: Review[];
   contacts: Contacts;
+  details: Details;
 }
 
 const LandingMain: React.FC<ILandingMain> = (props: ILandingMain) => {
-  const { advantages, contacts, products, reviews } = props;
+  const { advantages, contacts, products, reviews, details } = props;
 
   return (
     <Wrapper>
-      <MainBanner />
+      <MainBanner details={details} />
       <MainAbout />
       <MainAdvantages advantages={advantages} />
       <MainProducts products={products} />

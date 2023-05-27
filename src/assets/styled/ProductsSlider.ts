@@ -270,7 +270,7 @@ export const FilledBtn = {
 
 export const SliderControlBtn = styled.button`
   position: absolute;
-  z-index: 10;
+  z-index: 3;
   bottom: 0%;
   left: ${(props) => props.theme.left};
   right: ${(props) => props.theme.right};

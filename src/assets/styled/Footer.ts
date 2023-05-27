@@ -31,7 +31,14 @@ export const FooterContent = styled.div`
 
 export const FooterText = styled.span``;
 
-export const FooterLink = styled.a``;
+export const FooterBtn = styled.button`
+  transition: 0.3s;
+
+  &:hover {
+    color: #00b09b;
+  }
+`;
+
 export const FooterLogo = styled.a`
   position: absolute;
   left: 50%;

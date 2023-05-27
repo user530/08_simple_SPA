@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Container } from '../assets/styled/Header';
 import {
   BannerContent,
@@ -7,8 +8,22 @@ import {
   ContentText,
   MainBannerWrapper,
 } from '../assets/styled/MainBanner';
+import TextPopup from './TextPopup';
+import { Details } from '../types';
 
-const MainBanner: React.FC = () => {
+interface IMainBanner {
+  details: Details;
+}
+
+const MainBanner: React.FC<IMainBanner> = (props: IMainBanner) => {
+  const { heading, text } = props.details;
+  const [popupOpened, setPopupOpened] = useState<boolean>(false);
+
+  useEffect(() => {
+    const bodyOverflow = popupOpened ? 'hidden' : 'scroll';
+    document.body.style.overflow = bodyOverflow;
+  }, [popupOpened]);
+
   return (
     <MainBannerWrapper>
       <Container>
@@ -22,7 +37,19 @@ const MainBanner: React.FC = () => {
             Работаем по Москве и Московской области.
           </ContentText>
 
-          <ContentBtn>Подробнее</ContentBtn>
+          <ContentBtn onClick={() => setPopupOpened(!popupOpened)}>
+            Подробнее
+          </ContentBtn>
+
+          {popupOpened ? (
+            <TextPopup
+              heading={heading}
+              text={text}
+              closeHandler={() => {
+                setPopupOpened(false);
+              }}
+            />
+          ) : null}
         </BannerContent>
         <BannerImg />
       </Container>

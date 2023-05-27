@@ -37,3 +37,8 @@ export interface Contacts {
   socials: Social[];
   location: Location;
 }
+
+export interface Details {
+  heading: string;
+  text: string;
+}
