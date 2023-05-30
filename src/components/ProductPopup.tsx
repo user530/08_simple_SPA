@@ -14,6 +14,8 @@ import {
   InfoTextName,
   InfoTxtWrapper,
   ProductInfo,
+  ProductInfoLeft,
+  ProductInfoRight,
   ProductPopupContent,
 } from '../assets/styled/ProductPopup';
 import {
@@ -23,16 +25,19 @@ import {
   PopupBtn,
 } from '../assets/styled/TextPopup';
 import { Details, Product } from '../types';
+import { TfiClose, TfiMinus, TfiPlus } from 'react-icons/tfi';
 
-interface IProductPopup {
+export interface IProductPopup {
   details: Details;
   product: Product;
+  closeHandler: () => void;
 }
 
 const ProductPopup: React.FC<IProductPopup> = (props: IProductPopup) => {
   const {
-    details: { heading, text },
+    details: { heading },
     product: { img, name, ingredients, price },
+    closeHandler,
   } = props;
   const [count, setCount] = useState<number>(1);
 
@@ -42,37 +47,43 @@ const ProductPopup: React.FC<IProductPopup> = (props: IProductPopup) => {
         <PopupHeading>{heading}</PopupHeading>
         <ProductPopupContent>
           <ProductInfo>
-            <InfoImgWrapper>
-              <InfoImg src={require(`../assets/img/products/${img}`)} />
-            </InfoImgWrapper>
+            <ProductInfoLeft>
+              <InfoImgWrapper>
+                <InfoImg src={require(`../assets/img/products/${img}`)} />
+              </InfoImgWrapper>
 
-            <InfoTxtWrapper>
-              <InfoTextName>{name}</InfoTextName>
-              <InfoTextContents>{ingredients.join()}</InfoTextContents>
-            </InfoTxtWrapper>
+              <InfoTxtWrapper>
+                <InfoTextName>{name}</InfoTextName>
+                <InfoTextContents>{ingredients.join(', ')}</InfoTextContents>
+              </InfoTxtWrapper>
+            </ProductInfoLeft>
 
-            <InfoCounterWrapper>
-              <InfoCounterMinus
-                onClick={() => setCount(Math.max(1, count - 1))}
-              >
-                -
-              </InfoCounterMinus>
-              <InfoCounterBody>{count}</InfoCounterBody>
-              <InfoCounterPlus onClick={() => setCount(count + 1)}>
-                +
-              </InfoCounterPlus>
-              кг
-            </InfoCounterWrapper>
+            <ProductInfoRight>
+              <InfoCounterWrapper>
+                <InfoCounterMinus
+                  onClick={() => setCount(Math.max(1, count - 1))}
+                >
+                  <TfiMinus />
+                </InfoCounterMinus>
+                <InfoCounterBody>{count}</InfoCounterBody>
+                <InfoCounterPlus onClick={() => setCount(count + 1)}>
+                  <TfiPlus />
+                </InfoCounterPlus>
+                кг
+              </InfoCounterWrapper>
 
-            <InfoCostWrapper>
-              <InfoCostHeading>Стоимость:</InfoCostHeading>
-              <InfoCostValue>{price * count}</InfoCostValue>
-            </InfoCostWrapper>
+              <InfoCostWrapper>
+                <InfoCostHeading>Стоимость:</InfoCostHeading>
+                <InfoCostValue>{price * count} руб</InfoCostValue>
+              </InfoCostWrapper>
+            </ProductInfoRight>
           </ProductInfo>
 
           <FormWrapper>FORM</FormWrapper>
         </ProductPopupContent>
-        <PopupBtn>X</PopupBtn>
+        <PopupBtn onClick={closeHandler}>
+          <TfiClose />
+        </PopupBtn>
       </PopupWrapper>
     </PopupOverlay>
   );

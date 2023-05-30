@@ -1,5 +1,5 @@
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import { Product } from '../types';
+import { Details, Product } from '../types';
 import { ProductsSliderCard } from '../components';
 import Slider from 'react-styled-carousel';
 import {
@@ -8,6 +8,8 @@ import {
   SliderControlDots,
   SliderWrapper,
 } from '../assets/styled/ProductsSlider';
+import ProductPopup, { IProductPopup } from './ProductPopup';
+import { useState } from 'react';
 
 interface IProductsSlider {
   products: Product[];
@@ -21,9 +23,21 @@ const responsive = [
 
 const ProductsSlider: React.FC<IProductsSlider> = (props: IProductsSlider) => {
   const { products } = props;
+  const [popupData, setPopupData] = useState<null | IProductPopup>(null);
+
+  const setProductPopup = (product: Product, details: Details) =>
+    setPopupData({ product, details, closeHandler: () => setPopupData(null) });
 
   return (
     <SliderWrapper>
+      {popupData ? (
+        <ProductPopup
+          details={popupData.details}
+          product={popupData.product}
+          closeHandler={popupData.closeHandler}
+        />
+      ) : null}
+
       <Slider
         responsive={responsive}
         infinite={false}
@@ -42,7 +56,13 @@ const ProductsSlider: React.FC<IProductsSlider> = (props: IProductsSlider) => {
         DotsWrapper={() => <SliderControlDots />}
       >
         {products.map((product, ind) => {
-          return <ProductsSliderCard key={ind} product={product} />;
+          return (
+            <ProductsSliderCard
+              key={ind}
+              product={product}
+              setProductPopup={setProductPopup}
+            />
+          );
         })}
       </Slider>
     </SliderWrapper>

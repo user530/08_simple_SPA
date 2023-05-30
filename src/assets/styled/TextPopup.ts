@@ -21,8 +21,8 @@ export const PopupWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 52px 58px;
-  max-width: 768px;
-  max-height: 864px;
+  max-width: 864px;
+  max-height: 768px;
 
   @media (${SCREENS.sm}) {
     padding: 15px;

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   FilledBtn,
   InfoHeading,
@@ -17,12 +16,12 @@ import {
   TagListPopular,
   TagListSpecial,
 } from '../assets/styled/ProductsSlider';
-import { Product } from '../types';
-import ProductPopup from './ProductPopup';
+import { Details, Product } from '../types';
 
 interface IProductSliderCard {
   className?: string;
   product: Product;
+  setProductPopup: (product: Product, details: Details) => void;
 }
 
 const ProductsSliderCard: React.FC<IProductSliderCard> = (
@@ -31,10 +30,8 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
   const {
     product: { img, name, price, ingredients, tags },
     className,
+    setProductPopup,
   } = props;
-
-  const [orderOpened, setOrderOpened] = useState<boolean>(false);
-  const [detailsOpened, setDetailsOpened] = useState<boolean>(false);
 
   return (
     <ProductsCardWrapper className={className}>
@@ -64,25 +61,28 @@ const ProductsSliderCard: React.FC<IProductSliderCard> = (
       </ProductsCardInfo>
 
       <ProductsCardBtns>
-        <ProductsCardBtn onClick={() => setDetailsOpened(true)}>
+        <ProductsCardBtn
+          onClick={() =>
+            setProductPopup(props.product, {
+              heading: 'Подробнее о товаре',
+              text: '',
+            })
+          }
+        >
           Подробнее
         </ProductsCardBtn>
-        <ProductsCardBtn theme={FilledBtn} onClick={() => setOrderOpened(true)}>
+        <ProductsCardBtn
+          theme={FilledBtn}
+          onClick={() =>
+            setProductPopup(props.product, {
+              heading: 'Оформление заказа',
+              text: '',
+            })
+          }
+        >
           Заказать
         </ProductsCardBtn>
       </ProductsCardBtns>
-
-      {orderOpened ? (
-        <ProductPopup
-          details={{ heading: 'Оформление заказа', text: '' }}
-          product={props.product}
-        />
-      ) : detailsOpened ? (
-        <ProductPopup
-          details={{ heading: 'Информация о товаре', text: '' }}
-          product={props.product}
-        />
-      ) : null}
     </ProductsCardWrapper>
   );
 };
